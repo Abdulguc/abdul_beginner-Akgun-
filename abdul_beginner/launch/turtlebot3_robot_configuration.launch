@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="rplidar_ros" type="LaserScan" name="scan" output="screen"/>
+	<node pkg="nav_msgs" type="Odometry" name="odom" output="screen"/>
+	<node pkg="tf2" type="TFMessage" name="tf" output="screen"/>
+</launch>

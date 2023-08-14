@@ -1,0 +1,4 @@
+<launch>
+	<node name="map_server" pkg="map_server" type="map_server" args="$(find abdul_beginner)/WhatsApp Image 2023-08-01 at 8.11.30 AM.jpeg"/>
+
+</launch>

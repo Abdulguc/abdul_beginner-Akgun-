@@ -1,0 +1,16 @@
+<launch>
+  <!-- Launch map server with your map -->
+  <arg name="map_file" default="game_area2.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- Launch RPLIDAR node -->
+  <node name="rplidar" pkg="rplidar_ros" type="rplidarNode" output="screen">
+    <!-- Add any specific parameters for RPLIDAR node here if needed -->
+  </node>
+
+  <!-- Launch your warning system node -->
+  <node name="laser_to_map_transform" pkg="abdul_beginner" type="laser_to_map.py" output="screen"/>
+  <node name="warning_system_node" pkg="abdul_beginner" type="warning_system.py" output="screen">
+    <!-- Add any specific parameters for your warning system node here if needed -->
+  </node>
+</launch>

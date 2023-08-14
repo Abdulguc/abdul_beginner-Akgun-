@@ -1,0 +1,22 @@
+<launch>
+
+   <master auto="start"/>
+ <!-- Run the map server --> 
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find abdul_beginner)/config/game_area2.pgm 0.05"/>
+
+ <!--- Run AMCL --> 
+    <include file="$(find turtlebot3_navigation)/launch/amcl.launch">
+        <arg name="initial_pose_x" value="0.0"/>
+        <arg name="initial_pose_y" value="0.0"/>
+        <arg name="initial_pose_a" value="0.0"/>
+    </include>
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find abdul_beginner)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find abdul_beginner)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find abdul_beginner)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find abdul_beginner)/config/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(find abdul_beginner)/config/base_local_planner_params.yaml" command="load" />
+ </node>
+
+</launch>
